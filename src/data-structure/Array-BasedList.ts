@@ -39,8 +39,56 @@ class ArrayList<T>{
         this.listArray[this.listSize++] = it;
     }   
 
+    // Remove and return the current element
+    remove(): T{
+        if (this.curr <0 || this.curr>this.listSize){
+            throw new Error("No element");
+        }
+        const it = this.listArray[this.curr] // Copy the element
+        // Shift then down
+        for(let i = this.curr; i < this.listSize-1; i++ ){
+            this.listArray[i] = this.listArray[i+1];
+        }
+        this.listSize--; // Decrement size
+        return it;
+    }
+
+    // Reset position
+    moveToStart(): void {
+        this.curr = 0;
+    }
+    
+    // Set at end
+    moveToEnd(): void {
+        this.curr = this.listSize;
+    }
+ 
+    // Back up
+    prev(): void {
+        if (this.curr > 0){
+            this.curr--;
+        }
+    }
+
+    // Next
+    next(): void {
+        if (this.curr < this.listSize){
+            this.curr++;
+        }
+    }
+    
+    // Return list size 
+    length(): number {
+        return this.listSize;
+    }
+
+    // Return current position
+    currPos(): number {
+        return this.curr;
+    }
+
     // Set current list position to "pos"
-    moveTo(pos: number): void {
+    moveToPos(pos: number): void {
         if (pos >= 0 && pos <= this.listSize) {
             this.curr = pos;
         }else{
@@ -60,46 +108,29 @@ class ArrayList<T>{
         console.log(output.trim());
     }
 
-
-
-
-    moveToStart(): void {
-        this.curr = 0;
-    }
-   
-    moveToEnd(): void {
-        this.listSize;
-    }
-  
-    prev(): void {
-        if (this.curr > 0){
-            this.curr--;
-        }
-    }
- 
-    next(): void {
-        if (this.curr < this.listSize){
-            this.curr++;
-        }
-    }
-    
-
-    
-  
-
-
 }
 
 const list = new ArrayList<string>(5);
 list.append("A");
 list.append("B");
 list.append("C");
-list.moveTo(1);
+list.append("D")
+list.append("E")
+list.moveToPos(1);
+console.log("Removed:", list.remove());
 list.print(); 
-
-
-
-
+console.log("Length:", list.length());
+list.moveToEnd();
+console.log("Pos End:", list.currPos());
+list.moveToStart()
+console.log("Pos Start:", list.currPos());
+list.next();
+list.next();
+list.next();
+console.log("Pos:", list.currPos());
+list.prev();
+list.prev();
+console.log("Pos:", list.currPos());
 
 
 
