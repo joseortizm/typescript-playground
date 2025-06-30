@@ -96,6 +96,13 @@ class ArrayList<T>{
         }
     }
 
+    // Return current element
+    getValue(): T{
+        const it = this.listArray[this.curr];
+        return it;
+    }
+
+
     print(): void {
         let output = "";
         for (let i = 0; i < this.listSize; i++) {
@@ -117,20 +124,21 @@ list.append("C");
 list.append("D")
 list.append("E")
 list.moveToPos(1);
-console.log("Removed:", list.remove());
-list.print(); 
-console.log("Length:", list.length());
+console.log("Current value:", list.getValue()); // B
+console.log("Removed:", list.remove()); // B
+list.print(); // A [C] D E
+console.log("Length:", list.length()); // 4
 list.moveToEnd();
-console.log("Pos End:", list.currPos());
+console.log("Pos End:", list.currPos()); // 4
 list.moveToStart()
-console.log("Pos Start:", list.currPos());
+console.log("Pos Start:", list.currPos()); // 0
 list.next();
 list.next();
 list.next();
-console.log("Pos:", list.currPos());
+console.log("Pos:", list.currPos()); // 3
 list.prev();
 list.prev();
-console.log("Pos:", list.currPos());
+console.log("Pos:", list.currPos()); // 1
 
 
 
